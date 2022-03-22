@@ -1,4 +1,4 @@
-package TCP
+package TestTCPhandshake
 
 import (
 	"io" //stands for I/O- input and output module.
@@ -24,12 +24,12 @@ func TestDial(t *testing.T) {
 				t.Log(err)
 				return
 			}
-
+			// go func() - Anomaly function, can be used as param/variable. Is called at through ().
 			go func(c net.Conn) {
 				defer func() {
 					c.Close()
 					done <- struct{}{}
-				}()
+				}() // go func (c net.Conn)
 
 				buf := make([]byte, 1024)
 				for {
