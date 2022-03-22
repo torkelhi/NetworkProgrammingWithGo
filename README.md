@@ -1,5 +1,4 @@
-##Network Programming with Go
-___
+## Network Programming with Go
 
 This repo is for a class.  
 It focuses on using Go's standard library to and secure communication between  
