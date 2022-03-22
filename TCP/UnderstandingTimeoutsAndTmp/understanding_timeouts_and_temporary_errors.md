@@ -42,4 +42,9 @@ Asserting a net.Error to check whether the error was tmp.
 ```go
 if nErr, ok := err.(net.Error); ok && !nErr.Temporary() {return err}
 ```
-
+###Why we use Timeout  
+We want to keep the application predictable and user-friendly. If a user/client  
+performs a Dial and needs to wait for a response before going any further. Then we   
+are at the mercy of the OP to Timeout for us, and this takes time.  
+If the Serves isn't responding we want to time out quickly and move on. One solution  
+to explicitly define the time period we want to wait through the DialTimeout function.
