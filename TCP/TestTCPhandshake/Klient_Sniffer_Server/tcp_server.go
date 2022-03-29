@@ -10,7 +10,7 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
-
+	defer listener.Close()
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
@@ -23,5 +23,4 @@ func main() {
 			}
 		}()
 	}
-	listener.Close()
 }
