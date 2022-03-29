@@ -15,13 +15,13 @@ func main() {
 		conn, err := listener.Accept()
 		if err != nil {
 			fmt.Println(err)
-			return
 		}
-		_, err = conn.Write([]byte("Welcome to my server"))
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
+		go func() {
+			_, err = conn.Write([]byte("Welcome to my server"))
+			if err != nil {
+				fmt.Println(err)
+			}
+		}()
 	}
 	listener.Close()
 }
