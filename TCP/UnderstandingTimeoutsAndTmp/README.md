@@ -41,6 +41,7 @@ Type assertions provides access to an interface value's underlying concrete valu
 Asserting a net.Error to check whether the error was tmp.  
 ```go
 if nErr, ok := err.(net.Error); ok && !nErr.Temporary() {return err}
+
 ```
 ###Why we use Timeout  
 We want to keep the application predictable and user-friendly. If a user/client  

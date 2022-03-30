@@ -1,10 +1,11 @@
-###Sending and Receving Data
+#Sending and Receving Data
+___
 Lese data fra en netverktilkobling og skrive data til en netverkstilkobling  
 er gjøres på samme måte man leser av og sender data til filer. (net.Conn implementerer io.ReadWriteClose interface)  
 Man setter dataen i en fixed-sized buffer.  
 Man bruker en bufio.Scanner for å lese dataen fra en netverkstilkobling  
 til man møter en spesifikk seperator. 
-___
+
 ###Reading Data into a Fixed Buffer
 io.Reader interface som er implementert i net.Conn tillater deg til å lese data  
 fra en netverkstilkobling.
