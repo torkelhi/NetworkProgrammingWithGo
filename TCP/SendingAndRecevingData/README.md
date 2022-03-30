@@ -1,12 +1,14 @@
-#Sending and Receving Data
+# Sending and Receving Data
 ___
+
 Lese data fra en netverktilkobling og skrive data til en netverkstilkobling  
 er gjøres på samme måte man leser av og sender data til filer. (net.Conn implementerer io.ReadWriteClose interface)  
 Man setter dataen i en fixed-sized buffer.  
 Man bruker en bufio.Scanner for å lese dataen fra en netverkstilkobling  
 til man møter en spesifikk seperator. 
 
-###Reading Data into a Fixed Buffer
+### Reading Data into a Fixed Buffer
+
 io.Reader interface som er implementert i net.Conn tillater deg til å lese data  
 fra en netverkstilkobling.
 
@@ -16,7 +18,8 @@ er større enn bufferen.
 Løsningen er bufferen går i en løkke for å hente segmenter av "payloaden" helt til  
 man får en io.EOF error.
 
-***Eksempel***  
+***Eksempel***
+
 ```go
 
 buf := make([]byte, 3 1<<19) // 512 KB
@@ -35,5 +38,6 @@ for {
     }
 ```
 
-###Delimited Reading by Using a Scanner
+### Delimited Reading by Using a Scanner
+
 bufio.Scanner tillater å lese separert data. Les mer på ( https://pkg.go.dev/bufio )

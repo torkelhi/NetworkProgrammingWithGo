@@ -1,4 +1,4 @@
-#Time-outs and tmp-errors
+# Time-outs and tmp-errors
 
 ***Source***
 - Adam Woodbeck - Network Programming with Go_ Learn to Code Secure and Reliable Network Services from Scratch (2021, No Starch Press)
@@ -43,7 +43,8 @@ Asserting a net.Error to check whether the error was tmp.
 if nErr, ok := err.(net.Error); ok && !nErr.Temporary() {return err}
 
 ```
-###Why we use Timeout  
+### Why we use Timeout
+
 We want to keep the application predictable and user-friendly. If a user/client  
 performs a Dial and needs to wait for a response before going any further. Then we   
 are at the mercy of the OP to Timeout for us, and this takes time.  
