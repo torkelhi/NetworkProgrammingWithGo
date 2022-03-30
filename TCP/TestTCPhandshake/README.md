@@ -1,4 +1,4 @@
-##Establishing a TCP Connection by Using Go's Standard Library.
+## Establishing a TCP Connection by Using Go's Standard Library.
 
 * By using the net package in Go's standard library i can create TCP-based servers and clients capble of connecting to those servers.
 ***
