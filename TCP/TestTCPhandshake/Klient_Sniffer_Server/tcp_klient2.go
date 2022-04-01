@@ -21,14 +21,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	_, err = conn.Write([]byte(strEcho))
-	if err != nil {
-		println("Write to server failed:", err.Error())
-		os.Exit(1)
-	}
-
-	println("write to server = ", strEcho)
-
 	reply := make([]byte, 1024)
 
 	_, err = conn.Read(reply)
@@ -38,6 +30,14 @@ func main() {
 	}
 
 	println("reply from server=", string(reply))
+
+	_, err = conn.Write([]byte(strEcho))
+	if err != nil {
+		println("Write to server failed:", err.Error())
+		os.Exit(1)
+	}
+
+	println("write to server = ", strEcho)
 
 	conn.Close()
 }

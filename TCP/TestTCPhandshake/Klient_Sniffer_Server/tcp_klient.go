@@ -21,14 +21,6 @@ func main() {
 		os.Exit(1)
 	}
 
-	_, err = conn.Write([]byte(strEcho)) //skriver til koblingen vi etablerte
-	if err != nil {
-		println("Write to server failed:", err.Error())
-		os.Exit(1)
-	}
-
-	println("write to server = ", strEcho)
-
 	reply := make([]byte, 1024) //allokerer plass i minne for data fra server
 
 	_, err = conn.Read(reply) //Leser av data sendt fra server
@@ -36,8 +28,15 @@ func main() {
 		println("Write to server failed:", err.Error())
 		os.Exit(1)
 	}
-
 	println("reply from server=", string(reply))
+
+	_, err = conn.Write([]byte(strEcho)) //skriver til koblingen vi etablerte
+	if err != nil {
+		println("Write to server failed:", err.Error())
+		os.Exit(1)
+	}
+
+	println("write to server = ", strEcho)
 
 	conn.Close() //lukker tilkoblingen
 }
