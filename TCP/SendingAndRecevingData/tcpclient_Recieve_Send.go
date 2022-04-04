@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net"
+	"os"
 )
 
 func main() {
@@ -23,7 +24,27 @@ func main() {
 		}
 
 		if n > 0 {
-			fmt.Printf(string(buf[:n]))
+			fmt.Printf("read %d bytes\n", n)
+			fmt.Println(n)
+			fmt.Println(err)
 		}
+	}
+
+	/*
+		Read - interfacen kan brukes til mye forskjellig.
+		Her brukes den for å lese gjennom README.md filen"
+	*/
+	f, err := os.Open("ReadInterface_test.md")
+	if err != nil {
+		panic(err)
+	}
+	file := make([]byte, 5)
+	for {
+		read, err := f.Read(file)
+		if err != nil {
+			fmt.Println(err)
+			break
+		}
+		fmt.Printf(string(file[:read]))
 	}
 }
