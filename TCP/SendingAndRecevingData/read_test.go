@@ -1,4 +1,4 @@
-package TestTCPhandshake
+package main
 
 import (
 	"crypto/rand"

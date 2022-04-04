@@ -52,7 +52,7 @@ The for loop lets us concurrently handle client connections. You spin of a gorou
 asynchronously handle each connection so your listener can ready itself for the next client. Then we call
 the connection's Close method before the goroutine exits to terminate the connections by sending a FIN packet to the server.
 
-***The goroutine (for loop)***
+***The goroutine (go socket)***
 ```go
 for	{
 conn, err := listener.Accept()
