@@ -1,39 +1,29 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"io"
 	"net"
 )
 
 func main() {
 
-	conn, err := net.Dial("tcp", "127.0.0.1:5099")
+	conn, err := net.Dial("tcp", "127.0.0.1:6000")
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	go func() {
-		defer conn.Close()
-
-		var messagefromserverBuffer []string
-		scanner := bufio.NewScanner(conn)
-		scanner.Split(bufio.ScanWords)
-
-		for scanner.Scan() {
-			messagefromserverBuffer = append(messagefromserverBuffer, scanner.Text())
-		}
-
-		fmt.Printf("Scanned words: %#v\n", messagefromserverBuffer)
-
-		_, err := conn.Write([]byte("halo, client speaking her"))
+	defer conn.Close()
+	buf := make([]byte, 1)
+	for {
+		n, err := conn.Read(buf)
 		if err != nil {
 			fmt.Println(err)
-			if err != io.EOF {
-				fmt.Println(err)
-			}
+			break
 		}
-	}()
+
+		if n > 0 {
+			fmt.Printf(string(buf[:n]))
+		}
+	}
 }
