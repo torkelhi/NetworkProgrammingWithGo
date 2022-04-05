@@ -1,4 +1,4 @@
-package main
+package echo
 
 import (
 	"bytes"
@@ -8,6 +8,14 @@ import (
 	"testing"
 )
 
+/*
+TCP er er et stream-orientert og bruker dermed net.Conn - interfasen.
+UDP er ikke stream-orientert, men er primært pakke-orientert. Derfor bruker UDP
+net.PacketConn - interfasen.
+
+På grunn av at UDP ikke er sesjjon støttet må man håndtere en ekstra retur verdi,
+sender sin addresse.
+*/
 func echoServerUDP(ctx context.Context, addr string) (net.Addr, error) {
 	s, err := net.ListenPacket("udp", addr)
 	if err != nil {
@@ -42,7 +50,7 @@ func TestEchoServerUDP(t *testing.T) {
 	}
 	defer cancel()
 
-	client, err := net.Listen("udp", "127.0.0.1:")
+	client, err := net.ListenPacket("udp", "127.0.0.1:")
 	if err != nil {
 		t.Fatal(err)
 	}

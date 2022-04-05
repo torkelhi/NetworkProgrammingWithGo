@@ -14,7 +14,7 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	fmt.Print(conn.LocalAddr()) //checks the address (should be port 6666)
+	fmt.Print(conn.RemoteAddr()) //checks the address (should be port 6666)
 
 	buf := make([]byte, 10)
 	defer conn.Close()
@@ -25,7 +25,6 @@ func main() {
 		n, err := conn.Read(buf)
 		if err != nil {
 			fmt.Println(err)
-			break
 		}
 
 		if n < 0 {

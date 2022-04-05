@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"net"
@@ -22,6 +23,7 @@ func main() {
 
 		//2. Handle the proxy request
 		go handleConn(conn)
+		conn.Close()
 	}
 }
 
@@ -38,13 +40,13 @@ func handleConn(src net.Conn) {
 
 	go func() {
 		if _, err := io.Copy(dst, src); err != nil {
-			log.Fatalln(err)
+			fmt.Println(err)
 		}
 	}()
 
 	//3. Copy the respons from target for server conn to src conn
 
 	if _, err := io.Copy(src, dst); err != nil {
-		log.Fatalln(err)
+		fmt.Println(err)
 	}
 }
