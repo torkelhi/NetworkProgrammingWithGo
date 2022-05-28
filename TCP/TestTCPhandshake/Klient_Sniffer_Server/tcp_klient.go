@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	strEcho := "Hei jeg er din første klient"
+	strEcho := ""
 	servAddr := "127.0.0.1:6669"
 
 	tcpAddr, err := net.ResolveTCPAddr("tcp", servAddr) //net.ResolveTCPAddr returnerer TCP adressen, når man gir server adressen
@@ -29,6 +29,7 @@ func main() {
 		os.Exit(1)
 	}
 	println("reply from server=", string(reply))
+	strEcho += string(reply)
 
 	_, err = conn.Write([]byte(strEcho)) //skriver til koblingen vi etablerte
 	if err != nil {
