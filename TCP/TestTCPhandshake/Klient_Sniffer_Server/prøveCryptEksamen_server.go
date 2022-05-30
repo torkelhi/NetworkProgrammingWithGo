@@ -22,12 +22,13 @@ func main() {
 		if err != nil {
 			fmt.Printf("Error motatt23 %d", err)
 		}
-		_, err = conn.Read(buf)
+		n, err := conn.Read(buf)
 		if err != nil {
 			fmt.Printf("Error motatt27 %d", err)
 		}
-		reply = string(buf)
-		fmt.Println(reply + " Dette er meldingen fra Klienten")
+
+		reply = string(buf[:n])
+		fmt.Println(reply + "Dette er meldingen fra Klienten")
 		reply = deChifferMe(reply)
 		fmt.Println(reply)
 
@@ -43,7 +44,7 @@ func main() {
 
 func deChifferMe(input string) string {
 
-	alphabet := [31]rune{' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø', 'å', '1'}
+	alphabet := [31]rune{' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø', 'å', ','}
 
 	str := input
 	chars := []rune(str)
@@ -52,9 +53,6 @@ func deChifferMe(input string) string {
 	for i := 0; i < len(chars); i++ {
 		for j := 0; j < len(alphabet); j++ {
 			if chars[i] == alphabet[j] {
-				if len(alphabet) < j+1 {
-					newStr += string(alphabet[0])
-				}
 				if j-4 < 0 { //sjekker om den er uten for index
 					var a = j - 4
 					a += 31

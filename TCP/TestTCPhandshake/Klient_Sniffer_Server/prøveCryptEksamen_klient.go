@@ -20,12 +20,12 @@ func main() {
 	echoBuff := make([]byte, 1024)
 	echoStr := ""
 
-	_, err = conn.Read(echoBuff)
+	n, err := conn.Read(echoBuff)
 	if err != nil {
 		fmt.Printf("Error mottat25 %s", err)
 	}
-
-	echoStr += string(echoBuff)
+	fmt.Println(echoBuff[:n])
+	echoStr += string(echoBuff[:n])
 
 	fmt.Println(echoStr)
 
@@ -44,9 +44,6 @@ func chifferMe(input string) string {
 		for j := 0; j < len(alphabet); j++ {
 
 			if chars[i] == alphabet[j] {
-				if len(alphabet) < j+1 {
-					newStr += string(alphabet[0])
-				}
 				if j+4 > len(alphabet) {
 					var a = j + 4
 					a -= 31

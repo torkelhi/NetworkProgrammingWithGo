@@ -15,6 +15,7 @@ net.PacketConn - interfasen.
 
 På grunn av at UDP ikke er sesjjon støttet må man håndtere en ekstra retur verdi,
 sender sin addresse.
+Bruker ReadFrom () og WriteTo istedet for Read og Write.
 */
 func echoServerUDP(ctx context.Context, addr string) (net.Addr, error) {
 	s, err := net.ListenPacket("udp", addr)
