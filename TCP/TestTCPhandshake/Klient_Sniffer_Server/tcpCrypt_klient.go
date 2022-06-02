@@ -12,7 +12,7 @@ func main() {
 		fmt.Printf("Error mottat12 %s", err)
 	}
 
-	_, err = conn.Write([]byte(chifferMe("w, x og y møtes i ålesund")))
+	_, err = conn.Write([]byte(chifferMe("møte i ålesund 1.juni kl. 12.00")))
 	if err != nil {
 		fmt.Printf("Error mottat17 %s", err)
 	}
@@ -34,7 +34,7 @@ func main() {
 
 func chifferMe(input string) string {
 
-	alphabet := [31]rune{' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø', 'å', ','}
+	alphabet := [34]rune{' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø', 'å', '.', '0', '1', '2'}
 
 	str := input
 	chars := []rune(str)
@@ -46,10 +46,10 @@ func chifferMe(input string) string {
 			if chars[i] == alphabet[j] {
 				if j+4 > len(alphabet) {
 					var a = j + 4
-					a -= 31
+					a -= 34
 					newStr += string(alphabet[a])
 				}
-				if !(j+4 > len(alphabet)) {
+				if j+4 < len(alphabet) {
 					newStr += string(alphabet[j+4])
 				}
 			}

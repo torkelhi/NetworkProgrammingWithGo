@@ -44,7 +44,7 @@ func main() {
 
 func deChifferMe(input string) string {
 
-	alphabet := [31]rune{' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø', 'å', ','}
+	alphabet := [34]rune{' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'æ', 'ø', 'å', '.', '0', '1', '2'}
 
 	str := input
 	chars := []rune(str)
@@ -55,7 +55,7 @@ func deChifferMe(input string) string {
 			if chars[i] == alphabet[j] {
 				if j-4 < 0 { //sjekker om den er uten for index
 					var a = j - 4
-					a += 31
+					a += 34
 					newStr += string(alphabet[a])
 				}
 				if !(j-4 < 0) {
